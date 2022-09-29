@@ -2,6 +2,7 @@
 import AttractionComponent from "~/components/AttractionComponent";
 import { useItemStore } from "~/stores/useItemStore";
 import { useAuthCookie } from "~/composables/useAuth";
+
 useHead({
   titleTemplate: (title) => `My App - ${title}`,
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",

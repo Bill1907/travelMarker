@@ -10,4 +10,9 @@ export const useUserStore = defineStore("user", {
       user: null,
     };
   },
+  actions: {
+    setUserInfo(user) {
+      this.user = user;
+    },
+  },
 });

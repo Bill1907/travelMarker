@@ -1,4 +1,4 @@
-import { clearError, useCookie, useFetch } from "#app";
+import { useCookie, useFetch } from "#app";
 import { UserType } from "~/types/UserType";
 import { LoginBody, AuthBody } from "~/types/BodyType";
 
@@ -27,28 +27,37 @@ export async function checkAvailableToken() {
 export async function login(
   id: string,
   password: string
-): Promise<UserType | {}> {
-  console.log(id, password);
-  const config = useRuntimeConfig();
-  const { data, error } = await useFetch<Promise<LoginBody>>(
-    `${config.API_URL}/login`,
-    {
-      method: "POST",
-      body: {
-        username: id,
-        password,
-      },
-    }
-  );
-  console.log(data, error);
-  if (error.value) {
-    await clearError({ redirect: "/login" });
-    window.alert("로그인 실패했습니다.");
-    return;
-  }
+): Promise<{
+  status: number;
+  message: string;
+  data: UserType;
+}> {
+  try {
+    const config = useRuntimeConfig();
+    //useFetch는 라이프 사이클 훅에서 사용
+    const { accessToken, user } = await $fetch<Promise<LoginBody>>(
+      `${config.API_URL}/login`,
+      {
+        method: "POST",
+        body: {
+          username: id,
+          password,
+        },
+      }
+    );
 
-  const { accessToken, user } = data.value;
-  const token = useCookie("token");
-  token.value = accessToken.toString();
-  return user;
+    const token = useCookie("token");
+    token.value = accessToken.toString();
+    return {
+      status: 200,
+      message: "ok",
+      data: user,
+    };
+  } catch (error) {
+    return {
+      status: error.response.status,
+      message: error.response._data.message,
+      data: null,
+    };
+  }
 }

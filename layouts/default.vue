@@ -2,7 +2,7 @@
 import { useUserStore } from "~/stores/useUserStore";
 
 const router = useRouter();
-const userStore = useUserStore();
+const { user } = useUserStore();
 function onHomeButton() {
   router.push("/");
 }
@@ -15,9 +15,9 @@ function onHomeButton() {
         <span>Home</span>
       </div>
       <div class="user-info">
-        <span>{{ userStore.user.fname }}</span>
-        <span>{{ userStore.user.lname }}</span>
-        <img :src="userStore.user.avatar" alt="" />
+        <span>{{ user.fname }}</span>
+        <span>{{ user.lname }}</span>
+        <img :src="user.avatar" alt="" />
       </div>
     </header>
     <main>

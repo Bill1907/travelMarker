@@ -42,25 +42,23 @@ export const useItemStore = defineStore("item", {
     setAttraction(attraction) {
       this.attraction = attraction;
     },
-    async requestItemList(token: string, page: number, per_page: number) {
+    async requestItemList(token: string, p: number, count: number) {
       try {
-        console.log(
-          `https://www.mecallapi.com/api/attractions?page=${page}&per_page=${per_page}`
-        );
-        const { data } = await useFetch<Promise<ListBody>>(
-          `https://www.mecallapi.com/api/attractions?page=${page}&per_page=${per_page}`,
+        const { page, per_page, total, total_pages, data } = await $fetch<
+          Promise<ListBody>
+        >(
+          `https://www.mecallapi.com/api/attractions?page=${p}&per_page=${count}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-
-        this.setPage(data.value.page);
-        this.setPerPage(data.value.per_page);
-        this.setTotal(data.value.total);
-        this.setTotalPages(data.value.total_pages);
-        this.setItemList(data.value.data);
+        this.setPage(page);
+        this.setPerPage(per_page);
+        this.setTotal(total);
+        this.setTotalPages(total_pages);
+        this.setItemList(data);
       } catch (e) {
         console.log(e);
       }

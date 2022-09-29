@@ -4,19 +4,24 @@ import { login, useAuthCookie } from "~/composables/useAuth";
 import { onMounted, ref } from "vue";
 
 const router = useRouter();
-const userStore1 = useUserStore();
+const { setUserInfo } = useUserStore();
 
 const id = ref<string>("karn.yong@mecallapi.com");
 const password = ref<string>("mecallapi");
 
 const onClickLoginButton = async () => {
-  const resUser = await login(id.value, password.value);
-  userStore1.user = { ...resUser };
+  const { status, message, data } = await login(id.value, password.value);
+  if (status > 200) {
+    window.alert(message);
+    return;
+  }
+  setUserInfo({ ...data });
   router.push("/");
 };
 
 onMounted(() => {
   useAuthCookie().value = "";
+  setUserInfo(null);
 });
 </script>
 

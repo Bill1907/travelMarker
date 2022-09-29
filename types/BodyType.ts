@@ -10,23 +10,15 @@ export interface AuthBody {
 }
 
 export interface LoginBody {
-  data: {
-    value: {
-      accessToken: string;
-      user: UserType;
-    };
-  };
+  accessToken: string;
+  user: UserType;
 }
 export interface ListBody {
-  data: {
-    value: {
-      page: number;
-      per_page: number;
-      total: number;
-      total_pages: number;
-      dataList: ItemType[];
-    };
-  };
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
+  data: ItemType[];
 }
 
 export interface AttractionBody {
