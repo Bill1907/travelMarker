@@ -1,5 +1,8 @@
 # MarketBoro Test
 
+마켓보로 사전 과제입니다. 
+SSR 방식을 사용해 유저의 여행지를 보여주고 있습니다. 😄
+
 ## 스택
 - Typescript, Nuxt3, Pinia
 
