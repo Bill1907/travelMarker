@@ -1,10 +1,25 @@
-# Nuxt 3 Minimal Starter
+# MarketBoro Test
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+## 스택
+- Typescript, Nuxt3, Pinia
 
-## Setup
+## 폴더 구조
+```bash
+├── /components 
+├── /composables
+├── /layouts
+├── /middleware
+├── /pages
+├── /stores
+├── /types
+├── package.json
+├── tsconfig.json
+├── nuxt.config.ts
+└── app.vue
 
-Make sure to install the dependencies:
+``` 
+## 셋업
+dependencies 설치
 
 ```bash
 # yarn
@@ -17,26 +32,16 @@ npm install
 pnpm install --shamefully-hoist
 ```
 
-## Development Server
+## 서버 시작
 
 Start the development server on http://localhost:3000
 
 ```bash
+# npm
 npm run dev
-```
 
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
+# yarn
+yarn dev
 ```
 
 Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
