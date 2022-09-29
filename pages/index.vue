@@ -5,11 +5,11 @@ import { useAuthCookie } from "../composables/useAuth";
 
 useHead({
   title: "List",
-  // or, instead:
-  // titleTemplate: (title) => `My App - ${title}`,
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   charset: "utf-8",
-  meta: [{ name: "description", content: "My amazing site." }],
+  meta: [
+    { name: "contents List", content: "여행지 콘텐츠 리스트 페이지입니다." },
+  ],
 });
 
 definePageMeta({
